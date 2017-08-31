@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="novoAppCantinas">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Novo App Cantina's</title>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    <script src="libs/angular.js"></script>
+    <script src="libs/angular-ui-router.js"></script>
+    <script src="module.js"></script>
+    <script src="routes.js"></script>
+    <script src="controllers/cantinas-controller.js"></script>
+    <script src="controllers/card-controller-menu.js"></script>
+    <script src="controllers/header-controller.js"></script>
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+</head>
+<body>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
+
+<div ng-controller="headerController as mv" class = "center cabecalho">
+        <img ng-src="images/{{mv.logo.img}}" height="248" width="538"/>
+    </div>
+
+    <h3> Escolha uma cantina:</h3>
+
+
+
+    <div ng-controller="cantinaController as mv" class="center">
+
+                <div ng-repeat="cantina in mv.cantinas" class="centralizaLogos">
+
+                        <img class="pointer small-logo" height="100px" width="100px"
+                            ng-click="mv.carregarCantina(cantina)"
+                            ng-src="images/{{cantina.logo}}"/>
+                </div>
+        <br><br>
+        <div ng-show="mv.isShowCantina" class="description">
+            <div class="cantinaNome">
+                {{mv.cantinaClicada.name}} <br><br>
+
+
+            </div>
+
+
+
+
+
+            <div ng-cloak ng-repeat="menu in mv.cantinaClicada.menu" class="aligncard">
+                <div layout="row">
+                    <md-card class="card-center cabecalho small-logo">
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">{{menu.item}}</span>
+                                <span class="md-subhead">{{menu.price}}</span>
+                            </md-card-title-text>
+                            <md-card-title-media>
+                                <div class="md-media-sm card-media">
+                                    <img class="pointer small-logo" height="100px" width="100px"
+                                         ng-src="images/{{menu.image}}"/>
+                                </div>
+                            </md-card-title-media>
+                        </md-card-title>
+                        <md-card-actions>
+
+                        </md-card-actions>
+                    </md-card class="card-center cabecalho small-logo">
+                </div>
+            </div>
+
+
+
+
+
+            <br>
+            <img ng-src="images/{{mv.cantinaClicada.smallImg}}" class="tamanhoBalcao cabecalho"/>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <ui-view>
+
+    </ui-view>
+
+
+</body>
+</html>
